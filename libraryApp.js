@@ -19,7 +19,13 @@ function addBooktoList() {
   let book = new Book(...bookArgs);
   book.read = book.read === "true";
   bookList.push(book);
-}
+const bookForm = {
+  authorInput: document.querySelector("#book-author"),
+  bookNameInput: document.querySelector("#book-name"),
+  genreInput: document.querySelector("#book-genre"),
+  pagesInput: document.querySelector("#book-pages"),
+  hasRead: document.querySelector("#is-book-finished"),
+};
 const addBookButton = document.querySelector("#add-book");
 const addBookModal = document.querySelector("dialog");
 const modalCloseButton = document.querySelector("#modal-close-button");
