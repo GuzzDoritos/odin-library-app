@@ -8,6 +8,11 @@ function Book(author, title, genre, pages, read) {
   this.read = read;
 }
 
+Book.prototype.toggleRead = function () {
+  this.read = this.read ? false : true;
+  updateList();
+};
+
 function addBooktoList() {
   let bookArgs = [];
   for (prop in bookForm) {
@@ -39,9 +44,11 @@ function updateList() {
     const bookRow = document.createElement("tr");
 
     for (prop in book) {
-      const bookCell = document.createElement("td");
-      bookCell.textContent = book[prop];
-      bookRow.appendChild(bookCell);
+      if (Object.hasOwn(book, prop)) {
+        const bookCell = document.createElement("td");
+        bookCell.textContent = book[prop];
+        bookRow.appendChild(bookCell);
+      }
     }
 
     const deleteCell = document.createElement("td");
