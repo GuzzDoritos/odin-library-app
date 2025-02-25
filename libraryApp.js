@@ -19,6 +19,50 @@ function addBooktoList() {
   let book = new Book(...bookArgs);
   book.read = book.read === "true";
   bookList.push(book);
+
+  finishInput();
+}
+
+function finishInput() {
+  updateList();
+  clearInput();
+  addBookModal.close();
+}
+
+function updateList() {
+  const booksTable = document.querySelector("#books-table");
+
+  booksTable.textContent = "";
+
+  for (book of bookList) {
+    const bookRow = document.createElement("tr");
+
+    for (prop in book) {
+      const bookCell = document.createElement("td");
+      bookCell.textContent = book[prop];
+      bookRow.appendChild(bookCell);
+    }
+
+    const deleteCell = document.createElement("td");
+    deleteCell.className = "delete-cell";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "Delete";
+
+    deleteCell.appendChild(deleteBtn);
+    bookRow.appendChild(deleteCell);
+
+    bookRow.dataset.id = bookList.indexOf(book);
+
+    booksTable.appendChild(bookRow);
+  }
+}
+
+function clearInput() {
+  for (prop in bookForm) bookForm[prop].value = "";
+}
+
 const bookForm = {
   authorInput: document.querySelector("#book-author"),
   bookNameInput: document.querySelector("#book-name"),
