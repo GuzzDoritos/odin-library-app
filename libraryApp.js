@@ -7,6 +7,19 @@ function Book(author, title, genre, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+function addBooktoList() {
+  let bookArgs = [];
+  for (prop in bookForm) {
+    if (bookForm[prop].value.trim() == "") {
+      console.log("nope");
+      return;
+    }
+    bookArgs.push(bookForm[prop].value);
+  }
+  let book = new Book(...bookArgs);
+  book.read = book.read === "true";
+  bookList.push(book);
+}
 const addBookButton = document.querySelector("#add-book");
 const addBookModal = document.querySelector("dialog");
 const modalCloseButton = document.querySelector("#modal-close-button");
