@@ -43,32 +43,64 @@ function updateList() {
   for (book of bookList) {
     const bookRow = document.createElement("tr");
 
+    bookRow.dataset.id = bookList.indexOf(book);
+
     for (prop in book) {
       if (Object.hasOwn(book, prop)) {
         const bookCell = document.createElement("td");
+        if (prop === "read") {
+          const toggleButton = createToggleButton(book);
+          toggleButton.addEventListener("click", () => {
+            bookList[toggleButton.parentElement.parentElement.dataset.id].toggleRead();
+            updateList();
+          });
+
+          const toggleButtonCell = document.createElement("td");
+          toggleButtonCell.appendChild(toggleButton);
+          bookRow.appendChild(toggleButtonCell);
+          continue;
+        }
         bookCell.textContent = book[prop];
         bookRow.appendChild(bookCell);
       }
     }
 
+    const deleteBtn = createDeleteButton();
+    deleteBtn.addEventListener("click", () => {
+        deleteBook(deleteBtn);
+    })
+
     const deleteCell = document.createElement("td");
     deleteCell.className = "delete-cell";
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-btn";
-    deleteBtn.textContent = "Delete";
-
     deleteCell.appendChild(deleteBtn);
     bookRow.appendChild(deleteCell);
-
-    bookRow.dataset.id = bookList.indexOf(book);
 
     booksTable.appendChild(bookRow);
   }
 }
 
+function deleteBook(delBtn) {
+    bookList.splice(delBtn.parentElement.parentElement.dataset.id, 1);
+    updateList();
+}
+
 function clearInput() {
   for (prop in bookForm) bookForm[prop].value = "";
+}
+
+function createDeleteButton() {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.textContent = "Delete";
+  return deleteBtn;
+}
+
+function createToggleButton(bookObj) {
+  const btn = document.createElement("button");
+  btn.className = bookObj.read ? "has-been-read" : "has-not-been-read";
+  btn.textContent = bookObj.read ? "Yes" : "No";
+  return btn;
 }
 
 const bookForm = {
