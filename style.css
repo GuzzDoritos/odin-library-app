@@ -123,11 +123,11 @@ p {
 
 #add-book:hover {    
     background: rgb(255, 241, 224);
+    cursor: pointer;
 }
 
 #add-book:active {
     box-shadow: none;
-
 }
 
 .add-button-div {
