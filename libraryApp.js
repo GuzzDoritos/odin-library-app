@@ -7,6 +7,7 @@ function Book(author, title, genre, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
 function addBooktoList() {
   let bookArgs = [];
   for (prop in bookForm) {
@@ -70,15 +71,21 @@ const bookForm = {
   pagesInput: document.querySelector("#book-pages"),
   hasRead: document.querySelector("#is-book-finished"),
 };
+
 const addBookButton = document.querySelector("#add-book");
 const addBookModal = document.querySelector("dialog");
 const modalCloseButton = document.querySelector("#modal-close-button");
+const submitBookBtn = document.querySelector("#submit-book");
 
+submitBookBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  addBooktoList();
+});
 
 addBookButton.addEventListener("click", () => {
-    addBookModal.showModal();
-})
+  addBookModal.showModal();
+});
 
 modalCloseButton.addEventListener("click", () => {
-    addBookModal.close()
-})
+  addBookModal.close();
+});
