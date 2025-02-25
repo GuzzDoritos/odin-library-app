@@ -16,7 +16,7 @@
     <h1>Library app</h1>
     <p>Your registered books will be shown in the table below.</p>
     <p>Click the following button to add a book.</p>
-    <div><button id="add-book">Add Book</button></div>
+    <div class="add-button-div"><button id="add-book">Add Book</button></div>
     <table id="books-table">
       <thead>
         <tr>
@@ -35,12 +35,38 @@
           <td>Fantasy</td>
           <td>296</td>
           <td>[]</td>
-          <td class="delete-cell"><button class="delete-btn">Delete</button></td>
+          <td class="delete-cell">
+            <button class="delete-btn">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
     <dialog>
-        
+      <div class="modal-title-div">
+        <h2>Add book</h2>
+        <img id="modal-close-button" src="assets/close-square.svg" alt="" />
+      </div>
+      <form action="#" id="book-add-form">
+        <label for="book-author">Author
+            <input type="text" name="book-author" id="book-author" autocomplete="off">
+        </label>
+        <label for="book-name">Title
+            <input type="text" name="book-name" id="book-name" autocomplete="off">
+        </label>
+        <label for="book-genre">Genre
+            <input type="text" name="book-genre" id="book-genre" autocomplete="off">
+        </label>
+        <label for="book-pages">Pages
+            <input type="number" name="book-pages" id="book-pages" min=0 autocomplete="off">
+        </label>
+        <label for="is-book-finished">Is book finished
+            <select name="is-book-finished" id="is-book-finished">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </label>
+        <button type="submit" id="submit-book">Add book entry</button>
+      </form>
     </dialog>
     <script src="libraryApp.js"></script>
   </body>

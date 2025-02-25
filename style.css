@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "Domine", serif;
 }
 
 body {
@@ -21,10 +22,6 @@ table {
 th,
 td {
   padding: 20px;
-}
-
-html {
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
 }
 
 thead th,
@@ -78,6 +75,21 @@ tbody tr {
   background-image: url(assets/noise.png);
 }
 
+/* book delete button */
+
+.delete-btn {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
 /* top of the page text */
 
 h1 {
@@ -118,8 +130,52 @@ p {
 
 }
 
-
-div:first-of-type {
+.add-button-div {
     width: 80%;
     margin: auto;
+}
+
+/* dialog */
+
+dialog {
+    width: 500px;
+    position: relative;
+    margin: auto;
+    padding: 20px 30px;
+    border: 1px solid rgb(82, 82, 82);
+    border-radius: 10px;
+    background-color: rgb(255, 223, 186);
+}
+
+.modal-title-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+}
+
+#modal-close-button {
+    width: 40px;
+    border: 2px solid rgba(255, 0, 0, 0.205);
+    border-radius: 10px;
+    transition-duration: 0.1s;
+}
+
+#modal-close-button:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+/* add book form */
+
+input,
+select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: white;
+    border: 1px solid rgb(117, 117, 117);
+    margin-bottom: 20px;
 }
