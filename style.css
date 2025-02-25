@@ -1,31 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffebce
+}
+
 /* spacing */
 
 table {
-  table-layout: fixed;
-  width: 100%;
+  width: 80%;
+  margin: auto;
   border-collapse: collapse;
   border: 3px solid black;
 }
 
-thead th:nth-child(1) {
-  width: 20%;
-}
-
-thead th:nth-child(2) {
-  width: 30%;
-}
-
-thead th:nth-child(3) {
-  width: 23%;
-}
-
-thead th:nth-child(4) {
-  width: 5%;
-}
-
-thead th:nth-child(5) {
-  width: 22%;
-}
 
 th,
 td {
@@ -58,6 +49,11 @@ tfoot th {
   text-align: right;
 }
 
+.delete-cell {
+    width: fit-content;
+    padding: 0;
+}
+
 /* graphics and colors */
 
 thead,
@@ -79,5 +75,51 @@ tfoot td {
 /* zebra striping */
 
 tbody tr {
-  background-image: url(noise.png);
+  background-image: url(assets/noise.png);
+}
+
+/* top of the page text */
+
+h1 {
+    font-family: "Allura", serif;
+    font-weight: normal;
+    text-align: center;
+    font-size: 8rem;
+}
+
+p {
+    font-family: "Domine", serif;
+    font-size: 1.3rem;
+    margin: 2rem auto 2rem auto;
+    padding-left: 3rem;
+    width: 80%;
+}
+
+#add-book {
+    font-family: "Domine", serif;
+    font-weight: 600;
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
+    margin: 0 0 2rem 3rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(180deg, hsla(39, 100%, 85%, 1) 0%, hsla(34, 100%, 70%, 1) 100%);
+    box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.2);
+    transition: 0.05s;
+}
+
+#add-book:hover {    
+    background: rgb(255, 241, 224);
+}
+
+#add-book:active {
+    box-shadow: none;
+
+}
+
+
+div:first-of-type {
+    width: 80%;
+    margin: auto;
 }
