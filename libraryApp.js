@@ -2,19 +2,20 @@ const libraryApp = (function () {
   //array for storing registered books
   const bookList = [];
 
-  //book constructor
-  function Book(author, title, genre, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.genre = genre;
-    this.pages = pages;
-    this.read = read;
-  }
+  class Book {
+    constructor (author, title, genre, pages, read) {
+      this.author = author;
+      this.title = title;
+      this.genre = genre;
+      this.pages = pages;
+      this.read = read;
+    }
 
-  Book.prototype.toggleRead = function () {
-    this.read = this.read ? false : true;
-    updateList();
-  };
+    toggleRead() {
+      this.read = this.read ? false : true;
+      updateList();
+    }
+  }
 
   // cacheDom
   const bookForm = {
