@@ -13,7 +13,6 @@ const libraryApp = (function () {
 
     toggleRead() {
       this.read = this.read ? false : true;
-      updateList();
     }
   }
 
