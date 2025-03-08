@@ -57,22 +57,20 @@ const libraryApp = (function () {
       bookRow.dataset.id = bookList.indexOf(book);
 
       for (prop in book) {
-        if (Object.hasOwn(book, prop)) {
-          const bookCell = document.createElement("td");
-          if (prop === "read") {
-            const toggleButton = createToggleButton(book);
-            toggleButton.addEventListener("click", () => {
-              bookList[bookRow.dataset.id].toggleRead();
-              updateList();
-            });
+        const bookCell = document.createElement("td");
+        if (prop === "read") {
+          const toggleButton = createToggleButton(book);
+          toggleButton.addEventListener("click", () => {
+            bookList[bookRow.dataset.id].toggleRead();
+            updateList();
+          });
 
-            bookCell.appendChild(toggleButton);
-            bookRow.appendChild(bookCell);
-            continue;
-          }
-          bookCell.textContent = book[prop];
+          bookCell.appendChild(toggleButton);
           bookRow.appendChild(bookCell);
+          continue;
         }
+        bookCell.textContent = book[prop];
+        bookRow.appendChild(bookCell);        
       }
 
       const deleteBtn = createDeleteButton();
