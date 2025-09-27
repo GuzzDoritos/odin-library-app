@@ -39,11 +39,11 @@
         <h2>Add book</h2>
         <img id="modal-close-button" src="assets/close-square.svg" alt="" />
       </div>
-      <form action="#" id="book-add-form">
+      <form novalidate id="book-add-form">
         <label for="book-author">Author
             <input type="text" name="book-author" id="book-author" autocomplete="off">
         </label>
-        <label for="book-name">Title
+        <label for="book-name" required>Title
             <input type="text" name="book-name" id="book-name" autocomplete="off">
         </label>
         <label for="book-genre">Genre
@@ -62,5 +62,6 @@
       </form>
     </dialog>
     <script src="libraryApp.js"></script>
+    <script src="validation.js"></script>
   </body>
 </html>

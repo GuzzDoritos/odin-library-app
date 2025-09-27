@@ -46,12 +46,18 @@ const libraryApp = (function () {
     addBookModal.close();
   });
 
+  bookForm.bookNameInput.addEventListener("input", () => {
+    if (!bookForm.bookNameInput.validity.valid) {
+      bookForm.bookNameInput.setCustomValidity("test")
+    }
+  })
+
   // render function
 
   function updateList() {
     booksTable.textContent = "";
 
-    for (book of bookList) {
+    for (const book of bookList) {
       const bookRow = document.createElement("tr");
 
       bookRow.dataset.id = bookList.indexOf(book);
@@ -108,18 +114,20 @@ const libraryApp = (function () {
 
   function addBooktoList() {
     let bookArgs = [];
-    for (prop in bookForm) {
-      if (bookForm[prop].value.trim() == "") {
-        console.log("nope");
-        return;
-      }
-      bookArgs.push(bookForm[prop].value);
-    }
+    bookForm.bookNameInput.setCustomValidity("Test")
+    return;
     let book = new Book(...bookArgs);
     book.read = book.read === "true";
     bookList.push(book);
 
     finishInput();
+  }
+
+  function validate(inputElement) {
+    if (inputElement.value.trim() == "") {
+      return 0
+    }
+    return 1
   }
 
   function finishInput() {
