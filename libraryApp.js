@@ -29,14 +29,44 @@ const libraryApp = (function () {
   const addBookModal = document.querySelector("dialog");
   const modalCloseButton = document.querySelector("#modal-close-button");
   const submitBookBtn = document.querySelector("#submit-book");
+  const formEl = document.querySelector("#book-add-form")
   const booksTable = document.querySelector("#books-table");
 
   // bind events
 
   submitBookBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    addBooktoList();
+    const invalidInput = Object.values(bookForm).find((el) => el.value === "");
+
+
+    if (invalidInput) {
+      switch (invalidInput) {
+        case bookForm.authorInput:
+          invalidInput.setCustomValidity("Name of the author for this book must be provided");
+          break;
+        case bookForm.bookNameInput:
+          invalidInput.setCustomValidity("The name of the book must be provided");
+          break;
+        case bookForm.genreInput:
+          invalidInput.setCustomValidity("The genre of the book must be provided");
+          break;
+        case bookForm.pagesInput:
+          invalidInput.setCustomValidity("The number of pages the book has must be provided");
+          break;
+      }
+    } else {
+      addBooktoList();
+      e.preventDefault();
+    }
+
   });
+
+  for (const prop in bookForm) {
+    bookForm[prop].addEventListener("input", () => {
+      if (bookForm[prop].value !== "") {
+        bookForm[prop].setCustomValidity("")
+      }
+    })
+  }
 
   addBookButton.addEventListener("click", () => {
     addBookModal.showModal();
@@ -113,21 +143,15 @@ const libraryApp = (function () {
   // Add and delete buttons functions
 
   function addBooktoList() {
-    let bookArgs = [];
-    bookForm.bookNameInput.setCustomValidity("Test")
-    return;
+    const bookArgs = [];
+    for (input in bookForm) {
+      bookArgs.push(bookForm[input].value);
+    }
     let book = new Book(...bookArgs);
     book.read = book.read === "true";
     bookList.push(book);
 
     finishInput();
-  }
-
-  function validate(inputElement) {
-    if (inputElement.value.trim() == "") {
-      return 0
-    }
-    return 1
   }
 
   function finishInput() {
@@ -145,5 +169,6 @@ const libraryApp = (function () {
 
   function clearInput() {
     for (prop in bookForm) bookForm[prop].value = "";
+    bookForm.hasRead.value = true;
   }
 })();
