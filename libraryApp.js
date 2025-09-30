@@ -29,7 +29,6 @@ const libraryApp = (function () {
   const addBookModal = document.querySelector("dialog");
   const modalCloseButton = document.querySelector("#modal-close-button");
   const submitBookBtn = document.querySelector("#submit-book");
-  const formEl = document.querySelector("#book-add-form")
   const booksTable = document.querySelector("#books-table");
 
   // bind events
